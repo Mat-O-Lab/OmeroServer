@@ -1,0 +1,48 @@
+version: "3"
+
+services:
+
+  database:
+    image: "postgres:11"
+    environment:
+      POSTGRES_USER: ${OMERO_DB_USER}
+      POSTGRES_DB: ${OMERO_DB_NAME}
+      POSTGRES_PASSWORD: ${OMERO_DB_PASS}
+    networks:
+      - omero
+    volumes:
+      - "database:/var/lib/postgresql/data"
+
+  omeroserver:
+    build:
+      context: .
+      args:
+        OMERO_DATA_DIR: ${OMERO_DATA_DIR} # from .env file
+        OMERO_DB_PASS: ${OMERO_DB_PASS}
+    image: "ghcr.io/mat-o-lab/omero-server:latest"
+    env_file: .env
+    networks:
+      - omero
+    ports:
+      - "${APP_API_PORT}:4063"
+      #- "4064:4064"
+    volumes:
+      - "omero:/OMERO"
+
+  omeroweb:
+    # This container uses the tag for the latest web release of OMERO 5
+    # To upgrade to the next major release, increment the major version number
+    image: "openmicroscopy/omero-web-standalone:5"
+    environment:
+      OMEROHOST: omeroserver
+    networks:
+      - omero
+    ports:
+      - "${APP_PORT}:4080"
+
+networks:
+  omero:
+
+volumes:
+  database:
+  omero:

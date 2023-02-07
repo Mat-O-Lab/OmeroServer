@@ -9,7 +9,6 @@ Log in as user `root` password WEB_ROOT_PASS.
 
 # create a .env file with
 ```bash
-WEB_ROOT_PASS=<web_root_pass>
 APP_PORT=<web_app_port>
 APP_API_PORT=<api_app_port>
 
@@ -18,6 +17,8 @@ OMERO_DB_PASS=<db_user_passw>
 OMERO_DB_NAME=<omero_database>
 OMERO_ROOT_PASS=<omero_root_password>
 OMERO_DATA_DIR="/OMERO"
+OMERO_DB_HOST=database
+OMERO_DB_PORT=5432
 ```
 
 

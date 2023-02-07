@@ -8,24 +8,29 @@ services:
       POSTGRES_USER: ${OMERO_DB_USER}
       POSTGRES_DB: ${OMERO_DB_NAME}
       POSTGRES_PASSWORD: ${OMERO_DB_PASS}
+    hostname: ${OMERO_DB_HOST}
     networks:
       - omero
     volumes:
       - "database:/var/lib/postgresql/data"
 
   omeroserver:
-    build:
-      context: .
-      args:
-        OMERO_DATA_DIR: ${OMERO_DATA_DIR} # from .env file
-        OMERO_DB_PASS: ${OMERO_DB_PASS}
-    image: "ghcr.io/mat-o-lab/omero-server:latest"
-    env_file: .env
+    image: "openmicroscopy/omero-server:5"
+    environment:
+      CONFIG_omero_db_host: ${OMERO_DB_HOST}
+      CONFIG_omero_db_user: ${OMERO_DB_USER}
+      CONFIG_omero_db_pass: ${OMERO_DB_PASS}
+      CONFIG_omero_db_name: ${OMERO_DB_NAME}
+      ROOTPASS: ${OMERO_ROOT_PASS}
+    depends_on:
+      - database
     networks:
       - omero
     ports:
       - "${APP_API_PORT}:4063"
-      #- "4064:4064"
+      - "4064:4064"
+    expose:
+      - 4064
     volumes:
       - "omero:/OMERO"
 
@@ -35,6 +40,10 @@ services:
     image: "openmicroscopy/omero-web-standalone:5"
     environment:
       OMEROHOST: omeroserver
+      # CONFIG_omero_web_server__list: '[["omeroserver", 4064, "omeroserver"], ["fool.com", 4064, "test"]]'
+      # CONFIG_omero_web_debug: True
+    depends_on:
+      - omeroserver
     networks:
       - omero
     ports:

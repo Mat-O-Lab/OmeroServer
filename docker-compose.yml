@@ -27,8 +27,7 @@ services:
     networks:
       - omero
     ports:
-      - "${APP_API_PORT}:4063"
-      - "4064:4064"
+      - "${APP_API_PORT}:4064"
     expose:
       - 4064
     volumes:

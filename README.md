@@ -11,7 +11,9 @@ Log in as user `root` password WEB_ROOT_PASS.
 ```bash
 APP_PORT=<web_app_port>
 APP_API_PORT=<api_app_port>
-WEBSOCK_PORT=<wss_websocket_port>
+APP_API_SSL_PORT=<api_ssl_app_port>
+WEBSOCK_PORT=<websocket_port>
+WEBSOCK__SSL_PORT=<websocket_ssl_port>
 
 OMERO_DB_USER=<db_user_name>
 OMERO_DB_PASS=<db_user_passw>

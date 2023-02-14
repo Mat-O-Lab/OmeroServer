@@ -22,7 +22,7 @@ services:
       CONFIG_omero_db_pass: ${OMERO_DB_PASS}
       CONFIG_omero_db_name: ${OMERO_DB_NAME}
       ROOTPASS: ${OMERO_ROOT_PASS}
-      CONFIG_omero_client_icetransports: ssl,wss
+      CONFIG_omero_client_icetransports: ssl,wss,ws
       CONFIG_omero_glacier2_IceSSL_Ciphers: ADH:HIGH
       # CONFIG_omero_glacier2_IceSSL_DefaultDir: /etc/ssl/selfsigned
       # CONFIG_omero_glacier2_IceSSL_CAs: cacert.pem
@@ -33,8 +33,10 @@ services:
     networks:
       - omero
     ports:
-      - "${APP_API_PORT}:4064"
-      - "${WEBSOCK_PORT}:4066"
+      - "${APP_API_PORT}:4063"
+      - "${APP_API_SSL_PORT}:4064"
+      - "${WEBSOCK_PORT}:4065"
+      - "${WEBSOCK_SSL_PORT}:4066"
     expose:
       - 4064
     volumes:

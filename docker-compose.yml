@@ -49,8 +49,8 @@ services:
     environment:
       OMEROHOST: omeroserver
       #CONFIG_omero_web_server__list: '[["omeroserver", 4064, "omeroserver"], ["fool.com", 4064, "test"]]'
-      CONFIG_omero_web_redirect__allowed_hosts: ${WEB_ALLOWED_HOSTS}
-      # CONFIG_omero_web_debug: True
+      CONFIG_omero_web_redirect__allowed_hosts: ${OMERO_WEB_ALLOWED_HOST}
+      CONFIG_omero_web_debug: ${OMERO_WEB_DEBUG}
     depends_on:
       - omeroserver
     networks:

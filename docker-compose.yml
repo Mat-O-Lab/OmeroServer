@@ -49,7 +49,7 @@ services:
     environment:
       OMEROHOST: omeroserver
       #CONFIG_omero_web_server__list: '[["omeroserver", 4064, "omeroserver"], ["fool.com", 4064, "test"]]'
-      CONFIG_omero_web_redirect__allowed_hosts: '['omero.matolab.org','api.omero.matolab.org']'
+      CONFIG_omero_web_redirect__allowed_hosts: ${WEB_ALLOWED_HOSTS}
       # CONFIG_omero_web_debug: True
     depends_on:
       - omeroserver

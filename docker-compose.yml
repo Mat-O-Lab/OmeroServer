@@ -49,7 +49,7 @@ services:
     environment:
       OMEROHOST: omeroserver
       #CONFIG_omero_web_server__list: '[["omeroserver", 4064, "omeroserver"], ["fool.com", 4064, "test"]]'
-      CONFIG_omero_web_redirect__allowed_hosts: ${OMERO_WEB_ALLOWED_HOST}
+      CONFIG_omero_web_redirect__allowed__hosts: ${OMERO_WEB_ALLOWED_HOST}
       CONFIG_omero_web_debug: ${OMERO_WEB_DEBUG}
       CONFIG_omero_web_secure__proxy__ssl__header: ${OMERO_WEB_SECURE__PROXY__SSL__HEADER}
     depends_on:

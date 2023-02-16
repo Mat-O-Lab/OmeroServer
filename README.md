@@ -26,6 +26,9 @@ OMERO_WEB_ALLOWED_HOST=["omeroweb","localhost"]
 OMERO_WEB_DEBUG= False
 OMERO_WEB_SECURE__PROXY__SSL__HEADER=["HTTP_X_FORWARDED_PROTO", "https"]
 OMERO_WEB_ABSOLUT_URL= 'https://example.com/'
+OMERO_WEB_PUBLIC_ENABLE= True
+OMERO_WEB_PUBLIC_USER='public-user'
+OMERO_WEB_PUBLIC_PASSWORD=<public-user-password>
 ```
 
 

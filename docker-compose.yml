@@ -13,6 +13,11 @@ services:
       - omero
     volumes:
       - "database:/var/lib/postgresql/data"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${OMERO_DB_USER} -d postgres"]
+      interval: 2s
+      timeout: 5s
+      retries: 5
 
   omeroserver:
     image: "openmicroscopy/omero-server:5"
@@ -29,7 +34,8 @@ services:
       # CONFIG_omero_glacier2_IceSSL_CertFile: server.p12
       # CONFIG_omero_glacier2_IceSSL_Password: secret
     depends_on:
-      - database
+      database:
+        condition: service_healthy
     networks:
       - omero
     ports:
@@ -39,6 +45,11 @@ services:
       - "${WEBSOCK_SSL_PORT}:4066"
     expose:
       - 4064
+    healthcheck:
+      test: "curl -f https://localhost:4064 --insecure"
+      interval: 3s
+      timeout: 5s
+      retries: 20
     volumes:
       - "omero:/OMERO"
 
@@ -49,17 +60,29 @@ services:
     environment:
       OMEROHOST: omeroserver
       #CONFIG_omero_web_server__list: '[["omeroserver", 4064, "omeroserver"], ["fool.com", 4064, "test"]]'
+      ROOTPASS: ${OMERO_ROOT_PASS}
       CONFIG_omero_web_redirect__allowed__hosts: ${OMERO_WEB_ALLOWED_HOST}
       CONFIG_omero_web_debug: ${OMERO_WEB_DEBUG}
       CONFIG_omero_web_secure__proxy__ssl__header: ${OMERO_WEB_SECURE__PROXY__SSL__HEADER}
       CONFIG_omero_web_secure: True
       CONFIG_omero_web_api_absolute__url: ${OMERO_WEB_ABSOLUT_URL}
+      CONFIG_omero_web_public_enable: ${OMERO_WEB_PUBLIC_ENABLE}
+      CONFIG_omero_web_public_user: ${OMERO_WEB_PUBLIC_USER}
+      CONFIG_omero_web_public_password: ${OMERO_WEB_PUBLIC_PASSWORD}
     depends_on:
-      - omeroserver
+     omeroserver: 
+        condition: service_healthy
     networks:
       - omero
     ports:
       - "${APP_PORT}:4080"
+    volumes:
+      - ./91-add-public-user.sh:/startup/91-add-public-user.sh
+    healthcheck:
+      test: "curl -f http://localhost:4080"
+      interval: 5s
+      timeout: 5s
+      retries: 20
 
 networks:
   omero:

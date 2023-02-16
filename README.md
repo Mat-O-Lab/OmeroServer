@@ -23,6 +23,7 @@ OMERO_DATA_DIR="/OMERO"
 OMERO_DB_HOST=database
 OMERO_DB_PORT=5432
 OMERO_WEB_ALLOWED_HOST="['localhost','omeroweb']"
+OMERO_WEB_DEBUG= True
 ```
 
 

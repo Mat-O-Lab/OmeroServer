@@ -39,3 +39,10 @@ Then start the containers:
 For more configuration options see:
 - https://github.com/ome/omero-server-docker/blob/master/README.md
 - https://github.com/ome/omero-web-docker/blob/master/README.md
+
+## Configure Proxy
+to make the web app api login useable u have to add this to the root or api location
+```nginx
+proxy_set_header X-Forwarded-Proto $scheme;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+```

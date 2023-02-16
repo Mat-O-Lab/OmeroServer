@@ -53,8 +53,7 @@ services:
       CONFIG_omero_web_debug: ${OMERO_WEB_DEBUG}
       CONFIG_omero_web_secure__proxy__ssl__header: ${OMERO_WEB_SECURE__PROXY__SSL__HEADER}
       CONFIG_omero_web_secure: True
-      HTTPS: "on"
-      wsgi.url_scheme: "https"
+      CONFIG_omero_web_api_absolute_url: ${OMERO_WEB_URL}
     depends_on:
       - omeroserver
     networks:

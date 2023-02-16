@@ -57,11 +57,13 @@ We suggest two proxy hosts for server and web seperatly.
 ## Omero Server Proxy host
 Create a proxyhost with websocket support and just proxy_pass to the host running the doccker-compose stack with http and the websocket port.
 Should be working with all the options applicable by the ssl config tab.
+
 ## Omero Web Proxy host
 Create a proxyhost poiting by http to the machine hosting the stack and the omero_web_port.
 Should be working with all the options applicable by the ssl config tab.
 
 To make the web app api login useable u have to add this to the root or api location
+
 location /api
 ```nginx
 proxy_set_header X-Forwarded-Proto $scheme;

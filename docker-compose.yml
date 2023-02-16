@@ -69,6 +69,8 @@ services:
       CONFIG_omero_web_public_enable: ${OMERO_WEB_PUBLIC_ENABLE}
       CONFIG_omero_web_public_user: ${OMERO_WEB_PUBLIC_USER}
       CONFIG_omero_web_public_password: ${OMERO_WEB_PUBLIC_PASSWORD}
+      CONFIG_omero_web_public_server_id: 1
+      CONFIG_omero_web_public_url__filter: '^/(webadmin/myphoto/|webclient/(?!(script_ui|ome_tiff|figure_script))|webgateway/(?!(archived_files|download_as))|iviewer|api)'
     depends_on:
      omeroserver: 
         condition: service_healthy

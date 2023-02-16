@@ -24,7 +24,6 @@ OMERO_DB_HOST=database
 OMERO_DB_PORT=5432
 OMERO_WEB_ALLOWED_HOST=["omeroweb","localhost"]
 OMERO_WEB_DEBUG= False
-OMERO_WEB_URL='https://example.com'
 OMERO_WEB_SECURE__PROXY__SSL__HEADER=["HTTP_X_FORWARDED_PROTO", "https"]
 ```
 

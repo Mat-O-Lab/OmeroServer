@@ -52,6 +52,7 @@ services:
       CONFIG_omero_web_redirect__allowed__hosts: ${OMERO_WEB_ALLOWED_HOST}
       CONFIG_omero_web_debug: ${OMERO_WEB_DEBUG}
       CONFIG_omero_web_secure__proxy__ssl__header: ${OMERO_WEB_SECURE__PROXY__SSL__HEADER}
+      CONFIG_omero_web_secure: True
     depends_on:
       - omeroserver
     networks:

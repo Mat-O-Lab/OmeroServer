@@ -66,7 +66,7 @@ services:
       CONFIG_omero_web_secure__proxy__ssl__header: ${OMERO_WEB_SECURE__PROXY__SSL__HEADER}
       CONFIG_omero_web_secure: True
       CONFIG_omero_web_api_absolute__url: ${OMERO_WEB_ABSOLUT_URL}
-      CONFIG_omero_web_public_enable: ${OMERO_WEB_PUBLIC_ENABLE}
+      CONFIG_omero_web_public_enabled: ${OMERO_WEB_PUBLIC_ENABLE}
       CONFIG_omero_web_public_user: ${OMERO_WEB_PUBLIC_USER}
       CONFIG_omero_web_public_password: ${OMERO_WEB_PUBLIC_PASSWORD}
       CONFIG_omero_web_public_server_id: 1

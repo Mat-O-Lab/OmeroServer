@@ -6,7 +6,7 @@ set -eu
 omero=/opt/omero/web/venv3/bin/omero
 
 OMEROHOST=${OMEROHOST:-}
-if [ "$CONFIG_omero_web_public_enable" = "True" ]; then
+if [ "$CONFIG_omero_web_public_enabled" = "True" ]; then
     #$omero config set omero.web.server_list "[[\"$OMEROHOST\", 4064, \"omero\"]]"
     echo "adding public user"
     $omero login -s $OMEROHOST -p 4064 -u root -w $ROOTPASS || true

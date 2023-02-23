@@ -10,7 +10,7 @@ services:
       POSTGRES_PASSWORD: ${OMERO_DB_PASS}
     hostname: ${OMERO_DB_HOST}
     networks:
-      - omero
+      - omero_net
     volumes:
       - "database:/var/lib/postgresql/data"
     healthcheck:
@@ -37,7 +37,7 @@ services:
       database:
         condition: service_healthy
     networks:
-      - omero
+      - omero_net
     ports:
       - "${APP_API_PORT}:4063"
       - "${APP_API_SSL_PORT}:4064"
@@ -75,7 +75,7 @@ services:
      omeroserver: 
         condition: service_healthy
     networks:
-      - omero
+      - omero_net
     ports:
       - "${APP_PORT}:4080"
     volumes:
@@ -87,7 +87,8 @@ services:
       retries: 20
 
 networks:
-  omero:
+  omero_net:
+    name: omero_net
 
 volumes:
   database:

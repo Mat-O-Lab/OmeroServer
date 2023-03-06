@@ -80,6 +80,7 @@ services:
       - "${APP_PORT}:4080"
     volumes:
       - ./91-add-public-user.sh:/startup/91-add-public-user.sh
+    restart: always
     healthcheck:
       test: "curl -f http://localhost:4080"
       interval: 5s
